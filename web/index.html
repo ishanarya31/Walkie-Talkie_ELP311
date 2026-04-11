@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <title>Walkie-Talkie ELP311</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <h1>Walkie-Talkie ELP311</h1>
+  <div class="sub">ESP32 SSB audio relay</div>
+
+  <div class="card">
+    <div class="row">
+      <span class="k">WebSocket</span>
+      <span><span id="wsDot" class="dot"></span><span id="wsTxt">disconnected</span></span>
+    </div>
+    <div class="row">
+      <span class="k">Sample rate</span>
+      <span id="srTxt">-</span>
+    </div>
+    <div class="row">
+      <span class="k">State</span>
+      <span><span id="stDot" class="dot"></span><span id="stTxt">idle</span></span>
+    </div>
+    <div class="meter"><div id="meter"></div></div>
+  </div>
+
+  <div class="card">
+    <button id="startBtn">Start (grant mic)</button>
+    <button id="ptt" disabled>PUSH TO TALK</button>
+  </div>
+
+  <div class="card">
+    <div class="row"><span class="k">Log</span></div>
+    <div id="log" class="log"></div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>

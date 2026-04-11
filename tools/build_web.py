@@ -29,13 +29,13 @@ def main() -> int:
 
     html = re.sub(
         r'<link\s[^>]*href=["\']style\.css["\'][^>]*>',
-        "<style>\n" + css + "</style>",
+        lambda _: "<style>\n" + css + "</style>",
         html,
         count=1,
     )
     html = re.sub(
         r'<script\s[^>]*src=["\']app\.js["\'][^>]*></script>',
-        "<script>\n" + js + "</script>",
+        lambda _: "<script>\n" + js + "</script>",
         html,
         count=1,
     )

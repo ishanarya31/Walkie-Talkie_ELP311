@@ -192,8 +192,7 @@ button:disabled { opacity: 0.4; }
   const logEl = $("log");
   const log = (...args) => {
     const line = args.map(a => typeof a === "object" ? JSON.stringify(a) : String(a)).join(" ");
-    logEl.textContent += line + "
-";
+    logEl.textContent += line + "\n";
     logEl.scrollTop = logEl.scrollHeight;
   };
   const setStatus = (cls, txt) => {

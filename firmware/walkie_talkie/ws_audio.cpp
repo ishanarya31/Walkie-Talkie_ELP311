@@ -10,9 +10,16 @@ namespace wsaudio {
 // ----------------------------------------------------------------------------
 static AsyncWebSocket ws("/audio");
 
+// Helper to handle ESPAsyncWebServer API differences (pointers vs references)
+template <typename T>
+static AsyncWebSocketClient* getWsClientPtr(T* ptr) { return ptr; }
+template <typename T>
+static AsyncWebSocketClient* getWsClientPtr(T& ref) { return &ref; }
+
 // Broadcast to all connected clients except the sender.
 static void broadcastExcept(uint32_t senderId, uint8_t* data, size_t len) {
-  for (AsyncWebSocketClient* c : ws.getClients()) {
+  for (auto&& item : ws.getClients()) {
+    AsyncWebSocketClient* c = getWsClientPtr(item);
     if (c && c->id() != senderId
           && c->status() == WS_CONNECTED
           && c->canSend()) {
